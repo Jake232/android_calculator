@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Calculator_example</string>
+    <string name="company_name">Company XYZ</string>
+    <string name="logo_desc">Logo</string>
+    <string name="buttonGo">Go</string>
+</resources>
