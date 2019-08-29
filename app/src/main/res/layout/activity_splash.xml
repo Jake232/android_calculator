@@ -24,5 +24,6 @@
         android:background="@color/colorPrimary"
         android:text="@string/buttonGo"
         android:layout_gravity="center"
+        android:onClick="goPressed"
     />
 </LinearLayout>

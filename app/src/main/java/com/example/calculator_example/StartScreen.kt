@@ -1,15 +1,17 @@
 package com.example.calculator_example
 
-import android.content.Context
-import androidx.core.content.ContextCompat.startActivity
 import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
-
-
-fun go_pressed(){
-    val intent = Intent(this, NextActivity::class.java)
-// To pass any data to next activity
-    intent.putExtra("keyIdentifier", value)
-// start your next activity
-    startActivity(intent)
+class StartScreen : AppCompatActivity(){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
+    }
+    fun goPressed(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
