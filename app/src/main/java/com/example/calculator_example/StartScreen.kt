@@ -3,7 +3,6 @@ package com.example.calculator_example
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 
 class StartScreen : AppCompatActivity(){
@@ -15,5 +14,6 @@ class StartScreen : AppCompatActivity(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+        Thread.dumpStack()
     }
 }
