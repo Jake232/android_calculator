@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
     // If true, do not allow to add another DOT
     var lastDot: Boolean = false
 
+    /**
+     *Takes in the current State
+     *Returns nothing
+     *Sets the screen to be the activity_main.xml
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Takes in the view (To call from splash_screen.xml it is required)
+     * Returns nothing
      * Append the Button.text to the TextView
      */
     fun onDigit(view: View) {
@@ -45,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Takes in the view (To call from splash_screen.xml it is required)
+     * Returns nothing
      * Append . to the TextView
      */
     fun onDecimalPoint(view: View) {
@@ -56,6 +65,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Takes in the view (To call from splash_screen.xml it is required)
+     * Returns nothing
      * Append +,-,*,/ operators to the TextView
      */
     fun onOperator(view: View) {
@@ -68,7 +79,9 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-     * Clear the TextView
+     * Takes in the view (To call from splash_screen.xml it is required)
+     * Returns nothing
+     * Clears the TextView on CLR
      */
     fun onClear(view: View) {
         this.txtInput.text = ""
@@ -78,7 +91,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Calculate the output using Exp4j
+     * Takes in the view (To call from splash_screen.xml it is required)
+     * Returns nothing
+     * Calculate the output using Exp4j and siplays it in the result field
      */
     fun onEqual(view: View) {
         // If the current state is error, nothing to do.
