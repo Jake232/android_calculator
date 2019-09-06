@@ -90,33 +90,39 @@ class MainActivity : AppCompatActivity() {
      * Deletes the last character in the Textview
      */
     fun onDel(view: View){
-        //Grab the last char from txtInput before its deleted
-        val deleted = txtInput.text.takeLast(1)
-        val deletedChar = deleted[0]
+        val copy = txtInput.text.length
+        if(copy == 1)
+            onClear(view)
 
-        //Delete it
-        this.txtInput.text = txtInput.text.dropLast(1)
+        else if(copy >= 1) {
+            //Grab the last char from txtInput before its deleted
+            val deleted = txtInput.text.takeLast(1)
+            val deletedChar = deleted[0]
 
-        val operatorz = listOf('+','-','*','/')
+            //Delete it
+            this.txtInput.text = txtInput.text.dropLast(1)
 
-        //If the deleted char was an operator allow the user to place another
-        if(deletedChar in operatorz)
-            states["lastNumeric"] = true
+            val operatorz = listOf('+', '-', '*', '/')
 
-        //If the deleted char was a decimal place allow them to place another
-        else if(deletedChar.equals('.')) {
-            states["lastDot"] = false
-            states["lastNumeric"] = true
+            //If the deleted char was an operator allow the user to place another
+            if (deletedChar in operatorz)
+                states["lastNumeric"] = true
+
+            //If the deleted char was a decimal place allow them to place another
+            else if (deletedChar.equals('.')) {
+                states["lastDot"] = false
+                states["lastNumeric"] = true
+            }
+
+            //If it was numeric make sure the char behind it wasn't an operator
+            else {
+                val checkOp = txtInput.text.takeLast(1)
+                val singechar = checkOp[0]
+                if (singechar in operatorz)
+                    states["lastNumeric"] = false
+            }
+            states["stateError"] = false
         }
-
-        //If it was numeric make sure the char behind it wasn't an operator
-        else{
-            val checkOp = txtInput.text.takeLast(1)
-            val singechar = checkOp[0]
-            if(singechar in operatorz)
-                states["lastNumeric"] = false
-        }
-        states["stateError"] = false
     }
 
     /**
@@ -125,6 +131,10 @@ class MainActivity : AppCompatActivity() {
      * Calculate the output using Exp4j and display it in the result field
      */
     fun onEqual(view: View) {
+        //If any part of ERROR still on screen its still in error state
+        if(txtInput.text.contains("E"))
+            states["stateError"] = true
+
         // If the current state is error, nothing to do.
         // If the last input is a number only, solution can be found.
         if (states["lastNumeric"]!! && !states["stateError"]!!) {
