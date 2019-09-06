@@ -1,0 +1,3 @@
+# ninja log v5
+0	374	1567749146	CMakeFiles/native-lib.dir/native-lib.cpp.o	62f1051c82981862
+375	537	1567749146	/home/jake/AndroidStudioProjects/Calculator_example/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	919e0fe9e841450a

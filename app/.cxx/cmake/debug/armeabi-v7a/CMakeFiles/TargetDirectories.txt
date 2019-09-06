@@ -1,0 +1,3 @@
+/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/native-lib.dir

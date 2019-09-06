@@ -1,0 +1,42 @@
+{
+  "stringTable": {
+    "0": "/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/x86_64",
+    "1": "--target=x86_64-none-linux-android21 --gcc-toolchain=/home/jake/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/jake/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dnative_lib_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "/home/jake/Android/Sdk/ndk/20.0.5594570/build/cmake/android.toolchain.cmake",
+    "/home/jake/Android/Sdk/ndk/20.0.5594570/build/cmake/platforms.cmake",
+    "/home/jake/AndroidStudioProjects/Calculator_example/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/home/jake/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/x86_64\" clean"
+  ],
+  "buildTargetsCommand": "/home/jake/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Debug-x86_64": {
+      "buildCommand": "/home/jake/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/jake/AndroidStudioProjects/Calculator_example/app/.cxx/cmake/debug/x86_64\" native-lib",
+      "buildType": "debug",
+      "toolchain": "2275537699",
+      "abi": "x86_64",
+      "artifactName": "native-lib",
+      "files": [
+        {
+          "src": "/home/jake/AndroidStudioProjects/Calculator_example/app/src/main/cpp/native-lib.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "/home/jake/AndroidStudioProjects/Calculator_example/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so"
+    }
+  },
+  "toolchains": {
+    "2275537699": {
+      "cppCompilerExecutable": "/home/jake/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
