@@ -13,14 +13,8 @@ class MainActivity : AppCompatActivity() {
     // TextView used to display the input and output
     lateinit var txtInput: TextView
 
-    // Represent whether the lastly pressed key is numeric or not
-    var lastNumeric: Boolean = false
-
-    // Represent that current state is in error or not
-    var stateError: Boolean = false
-
-    // If true, do not allow to add another DOT
-    var lastDot: Boolean = false
+    //Map containing state information to ensure illegal operations are not made
+    var states = mutableMapOf("lastNumeric" to false, "stateError" to false, "lastDot" to false)
 
     /**
      *Takes in the current State
@@ -39,16 +33,16 @@ class MainActivity : AppCompatActivity() {
      * Append the Button.text to the TextView
      */
     fun onDigit(view: View) {
-        if (stateError) {
+        if (states["stateError"]!!) {
             // If current state is Error, replace the error message
             txtInput.text = (view as Button).text
-            stateError = false
+            states["stateError"] = false
         } else {
             // If not, already there is a valid expression so append to it
             txtInput.append((view as Button).text)
         }
         // Set the flag
-        lastNumeric = true
+        states["lastNumeric"] = true
     }
 
     /**
@@ -57,10 +51,10 @@ class MainActivity : AppCompatActivity() {
      * Append . to the TextView
      */
     fun onDecimalPoint(view: View) {
-        if (lastNumeric && !stateError && !lastDot) {
+        if (states["lastNumeric"]!! && !states["stateError"]!! && !states["lastDot"]!!) {
             txtInput.append(".")
-            lastNumeric = false
-            lastDot = true
+            states["lastNumeric"] = false
+            states["lastDot"] = true
         }
     }
 
@@ -70,10 +64,10 @@ class MainActivity : AppCompatActivity() {
      * Append +,-,*,/ operators to the TextView
      */
     fun onOperator(view: View) {
-        if (lastNumeric && !stateError) {
+        if (states["lastNumeric"]!! && !states["stateError"]!!) {
             txtInput.append((view as Button).text)
-            lastNumeric = false
-            lastDot = false    // Reset the DOT flag
+            states["lastNumeric"] = false
+            states["lastDot"] = false    // Reset the DOT flag
         }
     }
 
@@ -85,9 +79,9 @@ class MainActivity : AppCompatActivity() {
      */
     fun onClear(view: View) {
         this.txtInput.text = ""
-        lastNumeric = false
-        stateError = false
-        lastDot = false
+        states["lastNumeric"] = false
+        states["stateError"] = false
+        states["lastDot"] = false
     }
 
     /**
@@ -107,12 +101,12 @@ class MainActivity : AppCompatActivity() {
 
         //If the deleted char was an operator allow the user to place another
         if(deletedChar in operatorz)
-            lastNumeric = true
+            states["lastNumeric"] = true
 
         //If the deleted char was a decimal place allow them to place another
         else if(deletedChar.equals('.')) {
-            lastDot = false
-            lastNumeric = true
+            states["lastDot"] = false
+            states["lastNumeric"] = true
         }
 
         //If it was numeric make sure the char behind it wasn't an operator
@@ -120,19 +114,20 @@ class MainActivity : AppCompatActivity() {
             val checkOp = txtInput.text.takeLast(1)
             val singechar = checkOp[0]
             if(singechar in operatorz)
-                lastNumeric = false
+                states["lastNumeric"] = false
         }
-        stateError = false
+        states["stateError"] = false
     }
+
     /**
      * Takes in the view (To call from splash_screen.xml it is required)
      * Returns nothing
-     * Calculate the output using Exp4j and siplays it in the result field
+     * Calculate the output using Exp4j and display it in the result field
      */
     fun onEqual(view: View) {
         // If the current state is error, nothing to do.
         // If the last input is a number only, solution can be found.
-        if (lastNumeric && !stateError) {
+        if (states["lastNumeric"]!! && !states["stateError"]!!) {
             // Read the expression
             val txt = txtInput.text.toString()
             // Create an Expression (A class from exp4j library)
@@ -141,12 +136,12 @@ class MainActivity : AppCompatActivity() {
                 // Calculate the result and display
                 val result = expression.evaluate()
                 txtInput.text = result.toString()
-                lastDot = true // Result contains a dot
+                states["lastDot"] = true // Result contains a dot
             } catch (ex: ArithmeticException) {
                 // Display an error message
                 txtInput.text = "Error"
-                stateError = true
-                lastNumeric = false
+                states["stateError"] = true
+                states["lastNumeric"] = false
             }
         }
     }
