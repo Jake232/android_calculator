@@ -93,6 +93,40 @@ class MainActivity : AppCompatActivity() {
     /**
      * Takes in the view (To call from splash_screen.xml it is required)
      * Returns nothing
+     * Deletes the last character in the Textview
+     */
+    fun onDel(view: View){
+        //Grab the last char from txtInput before its deleted
+        val deleted = txtInput.text.takeLast(1)
+        val deletedChar = deleted[0]
+
+        //Delete it
+        this.txtInput.text = txtInput.text.dropLast(1)
+
+        val operatorz = listOf('+','-','*','/')
+
+        //If the deleted char was an operator allow the user to place another
+        if(deletedChar in operatorz)
+            lastNumeric = true
+
+        //If the deleted char was a decimal place allow them to place another
+        else if(deletedChar.equals('.')) {
+            lastDot = false
+            lastNumeric = true
+        }
+
+        //If it was numeric make sure the char behind it wasn't an operator
+        else{
+            val checkOp = txtInput.text.takeLast(1)
+            val singechar = checkOp[0]
+            if(singechar in operatorz)
+                lastNumeric = false
+        }
+        stateError = false
+    }
+    /**
+     * Takes in the view (To call from splash_screen.xml it is required)
+     * Returns nothing
      * Calculate the output using Exp4j and siplays it in the result field
      */
     fun onEqual(view: View) {

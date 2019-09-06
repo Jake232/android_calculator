@@ -6,14 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="8dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:theme="@style/Theme.Design"
+    android:background="@color/darkBackground">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textSize="48sp"
-        android:background="#efefef"
+        android:background="@color/textboxBackground"
         android:id="@+id/txtInput"
         android:gravity="end|center_vertical"
         android:maxLength="12"
@@ -21,7 +23,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginRight="8dp"
+        />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -177,12 +180,12 @@
                 android:id="@+id/btnZero"/>
 
             <Button
-                android:text="@string/clr"
+                android:id="@+id/btnDelete"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:onClick="onClear"
-                android:id="@+id/btnClear"/>
+                android:layout_weight="1"
+                android:onClick="onDel"
+                android:text="@string/del" />
 
             <Button
                 android:text="@string/add"
@@ -199,12 +202,20 @@
             android:layout_weight="1">
 
             <Button
-                android:text="@string/eq"
+                android:id="@+id/btnEqual"
+                android:layout_width="295dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onEqual"
+                android:text="@string/eq" />
+
+            <Button
+                android:text="@string/clr"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:onClick="onEqual"
-                android:id="@+id/btnEqual"/>
+                android:onClick="onClear"
+                android:id="@+id/btnClear"/>
         </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
